@@ -12,7 +12,7 @@ public class ProductManagerTest {
 
     Product Smartphone = new Smartphone(22222, "Apple", 100_000, "США");
     Product Book = new Book(12345, "Мастер и Маргарита", 600, "Булгаков");
-    Product Book2 = new Book(555, "Война и мир", 500, "Толстой");
+    Product Book2 = new Book(555, "Война и Мир", 500, "Толстой");
     Product Smartphone2 = new Smartphone(1023, "Samsung", 97_000, "Южная Корея");
 
     @BeforeEach
@@ -25,34 +25,30 @@ public class ProductManagerTest {
 
     }
 
+
     @Test
+    public void shouldFindName() {
 
-    public void shouldFindAuthor() {
-
-        Manager.matches(Book, "Булгаков");
-
-
-        Product[] expected = {};
-        Product[] actual = Manager.searchBy("Булгаков");
+        Product[] actual = Manager.searchBy("Война и Мир");
+        Product[] expected = {Book2};
         assertArrayEquals(expected, actual);
     }
 
     @Test
-    public void shouldFindNameBook() {
-        Manager.matches(Book2, "Война и мир");
+    public void shouldNotFindName() {
 
+
+        Product[] actual = Manager.searchBy("Иванов");
         Product[] expected = {};
-        Product[] actual = Manager.searchBy("Война и мир");
         assertArrayEquals(expected, actual);
     }
 
     @Test
-    public void shouldNotFindAuthor() {
+    public void shouldFindFewProducts() {
 
-        Manager.matches(Book2, "Некрасов");
 
-        Product[] expected = {};
-        Product[] actual = Manager.searchBy("Толстой");
+        Product[] actual = Manager.searchBy("М");
+        Product[] expected = {Book, Book2};
         assertArrayEquals(expected, actual);
     }
 

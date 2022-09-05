@@ -28,6 +28,7 @@ public class ProductRepositoryTest {
 
     public void shouldSaveProduct() {
 
+        Product[] actual = Repository.getAll();
 
         Product[] expected = {
                 Smartphone,
@@ -35,8 +36,6 @@ public class ProductRepositoryTest {
                 Book2,
                 Smartphone2
         };
-
-        Product[] actual = Repository.getAll();
 
         Assertions.assertArrayEquals(expected, actual);
 
@@ -50,13 +49,12 @@ public class ProductRepositoryTest {
 
         Repository.removeById(22222);
 
+        Product[] actual = Repository.getAll();
         Product[] expected = {
                 Book,
                 Book2,
                 Smartphone2
         };
-
-        Product[] actual = Repository.getAll();
 
         Assertions.assertArrayEquals(expected, actual);
     }
@@ -68,12 +66,12 @@ public class ProductRepositoryTest {
         Repository.removeById(22222);
         Repository.removeById(1023);
 
+        Product[] actual = Repository.getAll();
         Product[] expected = {
                 Book,
                 Book2,
         };
 
-        Product[] actual = Repository.getAll();
 
         Assertions.assertArrayEquals(expected, actual);
     }
@@ -87,9 +85,10 @@ public class ProductRepositoryTest {
         Repository.removeById(12345);
         Repository.removeById(555);
 
-        Product[] expected = {};
 
         Product[] actual = Repository.getAll();
+        Product[] expected = {};
+
 
         Assertions.assertArrayEquals(expected, actual);
     }
@@ -98,7 +97,7 @@ public class ProductRepositoryTest {
     public void test() {
 
         Assertions.assertThrows(NotFoundException.class, () -> {
-            Repository.findById(22);
+            Repository.removeById(22);
         });
     }
 
